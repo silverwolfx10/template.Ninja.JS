@@ -23,7 +23,11 @@ Ninja(['$iterator', '$template'], function ($iterator, $template) {
     $('body').innerHTML = html;
   }
   
-  $template($('#user_tmplate').innerHTML, $iterator([{ url: '#', name: 'cleber.programmer' }]));
+  function users() {
+    return $iterator([{ url: '#', name: 'cleber.programmer' }]);
+  }
+  
+  $template($('#user_tmplate').innerHTML, users());
   
 });
 ```
