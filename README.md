@@ -13,7 +13,7 @@ Micro template com recursos do puro do javascript a funcao curry e com memoizaca
 ```
 
 ```javascript
-Ninja(['$iterator', '$template'], function ($iterator, $template) {
+this.Ninja(['$iterator', '$template'], function ($iterator, $template) {
 
   function $(selector) {
     return document.querySelector(selector);

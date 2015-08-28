@@ -17,7 +17,7 @@
  *        </script>
  * 
  */
-Ninja.module('$template', [
+this.Ninja.module('$template', [
   
   '$concat',
   '$curry',

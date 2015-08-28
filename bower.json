@@ -1,0 +1,33 @@
+{
+  "name": "template.Ninja.JS",
+  "version": "0.0.0",
+  "authors": [
+    "Cleber de Moraes Goncalves <cleber.programmer@hotmail.com>"
+  ],
+  "description": "Micro template com recursos do puro do javascript a funcao curry e com memoizacao para evitar processamento repitidos",
+  "main": "template.js",
+  "keywords": [
+    "javascript"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Bibizzy/template.Ninja.JS",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Ninja.JS": "*",
+    "concat.Ninja.JS": "*",
+    "curry.Ninja.JS": "*",
+    "format.Ninja.JS": "*",
+    "join.Ninja.JS": "*",
+    "lambda.Ninja.JS": "*",
+    "memoize.Ninja.JS": "*",
+    "reduce.Ninja.JS": "*",
+    "replace.Ninja.JS": "*",
+    "split.Ninja.JS": "*"
+  }
+}
