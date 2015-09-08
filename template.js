@@ -32,6 +32,12 @@ this.Ninja.module('$template', [
 ], function ($concat, $curry, $format, $join, $lambda, $memoize, $reduce, $replace, $split, _) {
   
   /**
+   * Hash de modulos que seram acessados dentro do template
+   * pelos seus nomes pre definidos
+   */
+  var sandbox = {};
+  
+  /**
    * Passos para a execucao do template, esses passos
    * podem ser configurados adicionando ou removento e ate mesmo
    * alterando a ordem das execucoes, possibilitando novas funcionalidades
@@ -47,7 +53,7 @@ this.Ninja.module('$template', [
     $split(_, "%>"),
     $join(_, "p.push('"),
     $concat([]),
-    $format("var p = []; with(x) { p.push('{0}'); } return p.join('')")
+    $format("var p = []; with($x) { p.push('{0}'); } return p.join('')")
   ];
   
   /**
@@ -64,7 +70,7 @@ this.Ninja.module('$template', [
    * 
    */
   var exec = $memoize(function (a) {
-    return Function('x', $reduce(steps, a, $lambda('(a, b) => b(a)')));
+    return Function('$x', '$sandbox', $reduce(steps, a, $lambda('(a, b) => b(a)')));
   });
   
   /**
@@ -88,13 +94,37 @@ this.Ninja.module('$template', [
    * 
    */
   function template(a, b) {
-    return exec(a || '')(b);
+    return exec(a || '')(b, sandbox);
   }
 
   /**
    * Revelacao do servico $template, encapsulando a visibilidade das funcoes
    * privadas
    */
-  return $curry(template);
+  return (function (constructor) {
+    
+    /**
+     * Registra modulos para serem acessados dentro do template
+     * 
+     * @static
+     * @method push
+     * @param {String} a Nome do modulo para referencia dentro do template
+     * @param {Object} b Modulo
+     * @example
+     * 
+     *        $template.push('$pallete', $pallete);
+     *
+     */
+    constructor.push = function (a, b) {
+      sandbox[a] = b;
+    };
+    
+    /**
+     * Retorna o construtor interceptor a funcao curry com
+     * a funcao statica push
+     */
+    return constructor;
+    
+  })($curry(template));
   
 });
