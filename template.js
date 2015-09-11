@@ -53,7 +53,7 @@ this.Ninja.module('$template', [
     $split(_, "%>"),
     $join(_, "p.push('"),
     $concat([]),
-    $format("var p = []; with($x) { p.push('{0}'); } return p.join('')")
+    $format("var p = []; with ($sandbox) { with ($x) { p.push('{0}'); } } return p.join('')")
   ];
   
   /**
